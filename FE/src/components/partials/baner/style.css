@@ -1,0 +1,17 @@
+.m-img-left {
+    position: absolute;
+    left: 0;
+    /* right: 61.54%; */
+    top: 0;
+    bottom: 89.45%;
+    /* transform: rotate(31.36deg); */
+}
+
+.m-img-right {
+    position: absolute;
+    left: 87%;
+    right: 0;
+    top: 0;
+    bottom: 74.09%;
+    /* transform: rotate(-98.59deg); */
+}

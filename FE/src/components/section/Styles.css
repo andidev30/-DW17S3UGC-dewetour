@@ -1,0 +1,91 @@
+.judul {
+    margin-top: 50px;
+    font-family: Product Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 78px;
+    color: #FFFFFF;
+}
+
+.sub-judul {
+    font-family: Product Sans Thin;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 78px;
+    color: #FFFFFF;
+}
+
+.feature-img {
+    width: 70px;
+    height: 70px;
+}
+
+.m-title {
+    font-family: Product Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.m-left {
+    position: absolute;
+    left: 7%;
+    right: 61.54%;
+    top: -11.41%;
+    bottom: 89.45%;
+    /* transform: rotate(31.36deg); */
+}
+
+.info-trip-title {
+    /* position: absolute;
+    width: 101.42px;
+    height: 18px;
+    left: 219px;
+    top: 898px; */
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 18px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #A8A8A8;
+
+}
+
+.info-trip-desc {
+    /* position: absolute;
+    width: 125.76px;
+    height: 25px;
+    left: 257.54px;
+    top: 920px; */
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 25px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+.footer {
+    position: relative;
+    right: 0;
+    bottom: 0;
+}
+.daun{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

@@ -1,0 +1,31 @@
+.img-left {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    bottom: 45.63%;
+    /* opacity: 0.2;
+    transform: rotate(6.66deg); */
+}
+
+.img-right {
+    position: absolute;
+    /* left: 0; */
+    right: 0;
+    top: 77%;
+    bottom: 57.19%;
+    /* opacity: 0.2; */
+    /* transform: rotate(-20deg); */
+}
+
+/* 
+.daun {
+    leaf (1) 1
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 1251px;
+    top: 1610px;
+    bottom: 0;
+    right: 0;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+} */
