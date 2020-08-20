@@ -12,7 +12,8 @@ exports.register = async (req, res) => {
             email,
             password,
             phone,
-            address
+            address,
+            role
         } = req.body
 
         const schema = joi.object({
@@ -20,7 +21,8 @@ exports.register = async (req, res) => {
             email: joi.string().email().min(7).required(),
             password: joi.string().min(8).required(),
             phone: joi.string().min(11).required(),
-            address: joi.string().min(10).required()
+            address: joi.string().min(4).required(),
+            role: joi.string().required(),
         })
 
         const {
@@ -53,7 +55,8 @@ exports.register = async (req, res) => {
             email,
             password: hashPassword,
             phone,
-            address
+            address,
+            role
         })
 
         const token = jwt.sign({
@@ -64,6 +67,7 @@ exports.register = async (req, res) => {
             message: "you have been registered",
             data: {
                 email: data.email,
+                role: data.role,
                 token
             }
         })
@@ -125,6 +129,7 @@ exports.login = async (req, res) => {
             message: "login Success",
             data: {
                 email,
+                role: checkEmail.role,
                 token
             }
         })

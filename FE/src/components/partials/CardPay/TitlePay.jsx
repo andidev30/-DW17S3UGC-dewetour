@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
 import Logo from "../../img/global/Icon.png";
 
-function TitlePay() {
+function TitlePay({ data }) {
   return (
     <Row>
       <Col>
@@ -10,7 +10,7 @@ function TitlePay() {
       </Col>
       <Col>
         <h3 className="font-weight-bold text-right">Booking</h3>
-        <h5 className="text-muted text-right">Saturday 22 July 2020</h5>
+        <h5 className="text-muted text-right">{data.createdAt}</h5>
       </Col>
     </Row>
   );

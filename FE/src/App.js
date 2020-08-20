@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {
   BrowserRouter as Router,
@@ -12,43 +12,42 @@ import Profile from './pages/Profile'
 import Transaction from './pages/Transaction'
 import Trip from './pages/Trip'
 import TripAdd from './pages/TripAdd'
-import PayPending from './pages/PayPending'
+// import PayPending from './pages/PayPending'
 import Footer from "./components/section/Footer";
 import './App.css'
 // import ImgLeft from "./components/img/global/left.png";
 // import ImgRight from "./components/img/global/right.png";
 import LoginContext from './context/LoginContext'
+import PrivateRoute from './helpers/PrivateRoute'
 
 function App() {
-  const status = {
-    isLoggedIn: true,
-    role: false
-  }
+
+  const [loginData, setLoginData] = useState({
+    isLogin: false,
+    token: "",
+    role: "user"
+  })
   return (
     <>
-    <LoginContext.Provider value={status}>
+    <LoginContext.Provider value={{loginData, setLoginData}}>
     {/* <img src={ImgLeft} className="img-left" alt="left" />
     <img src={ImgRight} className="img-right" alt="right" /> */}
     <Router>
       <Switch>
-        <Route path="/pay-pending">
+        {/* <Route path="/pay-pending">
           <PayPending />
-        </Route>
+        </Route> */}
         <Route path="/trip/add">
           <TripAdd />
         </Route>
         <Route path="/trip">
           <Trip />
         </Route>
-        <Route path="/detail-trip">
+        <Route path="/detail-trip/:id">
           <TripDetail />
         </Route>
-        <Route path="/pay">
-          <Pay />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
+        <PrivateRoute path="/pay" component={Pay} />
+        <PrivateRoute path="/profile" component={Profile} />
         <Route path="/transaction">
           <Transaction />
         </Route>

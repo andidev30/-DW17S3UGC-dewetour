@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Row, Col } from "react-bootstrap";
 
-function DataPay() {
+function DataPay({ data }) {
   return (
     <div className="mt-4">
       <Table striped hover>
@@ -17,26 +17,28 @@ function DataPay() {
         <tbody>
           <tr>
             <td>1</td>
-            <td>Mark</td>
-            <td>Male</td>
-            <td>081224202456</td>
+            <td>{data.user.fullname}</td>
+            <td>laki laki</td>
+            <td>{data.user.phone}</td>
             <td></td>
           </tr>
         </tbody>
       </Table>
-      <hr/>
+      <hr />
       <Row>
-          <Col md={8}></Col>
-          <Col md={1}>Qty</Col>
-          <Col md={1}>:</Col>
-          <Col md={2}>1</Col>
+        <Col md={8}></Col>
+        <Col md={1}>Qty</Col>
+        <Col md={1}>:</Col>
+        <Col md={2}>{data.counterQty}</Col>
       </Row>
-      <hr/>
+      <hr />
       <Row>
-          <Col md={8}></Col>
-          <Col md={1}>Total</Col>
-          <Col md={1}>:</Col>
-          <Col md={2} className="text-danger">IDR. 12.200.000</Col>
+        <Col md={8}></Col>
+        <Col md={1}>Total</Col>
+        <Col md={1}>:</Col>
+        <Col md={2} className="text-danger">
+          IDR. {data.total}
+        </Col>
       </Row>
     </div>
   );

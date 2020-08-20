@@ -13,7 +13,7 @@ function ModalPay(props) {
       <Modal.Body>
         <div>
           Your payment will be confirmed within 1 x 24 hours To see orders click
-          <Link to="/pay-pending">
+          <Link to="/pay">
             <Button variant="warning text-white" className="mx-2">
               Here
             </Button>

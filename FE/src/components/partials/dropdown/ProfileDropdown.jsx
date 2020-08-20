@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import "./style.css";
 import D1 from "../../img/dropdown/user 2.png";
 import D2 from "../../img/dropdown/Vector.png";
@@ -6,14 +6,26 @@ import D3 from "../../img/dropdown/logout 1.png";
 import D4 from "../../img/dropdown/journey 1.png";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import LoginContext from '../../../context/LoginContext'
 
 function ProfileDropdown() {
-  const status = useContext(LoginContext)
+
+  const setLogout = () => {
+    localStorage.setItem("token", "");
+    localStorage.setItem("email", "");
+    localStorage.setItem("role", "");
+    window.location.reload(false);
+  }
   return (
     <div>
       <div className="kotak">
-        {!status.role && (
+        {localStorage.role === "admin" ? (
+          <Link to="/trip">
+          <p>
+            <Image src={D4} className="mr-3" />
+            <span className="text-dark font-weight-bold">Trip</span>
+          </p>
+        </Link>
+        ) : (
           <>
             <Link to="/profile">
               <p>
@@ -28,18 +40,10 @@ function ProfileDropdown() {
               </p>
             </Link>
           </>
-        )}
-        {status.role && (
-          <Link to="/trip">
-            <p>
-              <Image src={D4} className="mr-3" />
-              <span className="text-dark font-weight-bold">Trip</span>
-            </p>
-          </Link>
-        )}
+        ) }
         <hr />
         <Link to="">
-          <p>
+          <p onClick={setLogout}>
             <Image src={D3} className="mr-3" />
             <span className="text-dark font-weight-bold">Log Out</span>
           </p>

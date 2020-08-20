@@ -42,5 +42,6 @@ router.post('/transaction', authenticated.cekLogin, transactionController.store)
 router.put('/transaction/:id', authenticated.cekLogin, transactionController.update)
 router.get('/transaction/:id', transactionController.show)
 router.get('/orders', transactionController.shows)
+router.get('/orderByUser', authenticated.cekLogin, transactionController.showByUser)
 
 module.exports = router

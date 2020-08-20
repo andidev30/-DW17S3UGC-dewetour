@@ -55,9 +55,6 @@ exports.show = async (req, res) => {
 
 exports.store = async (req, res) => {
     try {
-        // const {
-        //     name
-        // } = req.body
         const schema = joi.object({
             name: joi.string().min(2).required()
         })
@@ -75,6 +72,7 @@ exports.store = async (req, res) => {
         const data = await Country.create(req.body)
 
         res.status(200).send({
+            message: "data has been store",
             data: {
                 id: data.id,
                 name: data.name
@@ -133,7 +131,7 @@ exports.update = async (req, res) => {
             })
 
             res.status(200).send({
-                message: "response success",
+                message: "data has been updated",
                 data: checkId
             })
         }
@@ -175,7 +173,7 @@ exports.destroy = async (req, res) => {
             })
 
             return res.status(200).send({
-                message: "response success",
+                message: "data has been destroyed",
                 id
             })
         }

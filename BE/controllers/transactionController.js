@@ -1,7 +1,8 @@
 const {
     Transaction,
     Trip,
-    Country
+    Country,
+    User
 } = require('../models')
 
 const joi = require('@hapi/joi')
@@ -12,7 +13,7 @@ exports.store = async (req, res) => {
             counterQty: joi.number().integer().required(),
             total: joi.number().integer().required(),
             status: joi.string().min(4).required(),
-            attachment: joi.string().min(4).required(),
+            attachment: joi.string().min(1).required(),
             tripid: joi.number().integer().required()
         })
 
@@ -26,7 +27,23 @@ exports.store = async (req, res) => {
             }
         })
 
-        const data = await Transaction.create(req.body)
+        const id = req.user.id
+        const {
+            counterQty,
+            total,
+            status,
+            attachment,
+            tripid
+        } = req.body
+
+        const data = await Transaction.create({
+            counterQty,
+            total,
+            status,
+            attachment,
+            tripid,
+            userId: id
+        })
 
         if (data) {
             const result = await Transaction.findOne({
@@ -53,7 +70,7 @@ exports.store = async (req, res) => {
             })
 
             res.status(200).send({
-                message: "response success",
+                message: "data has been stored",
                 data: result
             })
         }
@@ -125,7 +142,7 @@ exports.update = async (req, res) => {
 
             if (!result) return res.status(400).send({
                 error: {
-                    message: "can't update. id is incorect"
+                    message: "data has been updated"
                 }
             })
 
@@ -197,9 +214,9 @@ exports.shows = async (req, res) => {
     try {
         const result = await Transaction.findAll({
             attributes: {
-                exclude: ['createdAt', 'updatedAt', 'tripid']
+                exclude: ['createdAt', 'updatedAt', 'tripid', 'userId']
             },
-            include: {
+            include: [{
                 model: Trip,
                 as: "Trip",
                 attributes: {
@@ -212,12 +229,67 @@ exports.shows = async (req, res) => {
                         exclude: ['createdAt', 'updatedAt']
                     }
                 }
-            }
+            }, {
+                model: User,
+                as: "user",
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt', 'password']
+                }
+            }]
         })
 
         res.status(200).send({
             message: "response success",
             data: result
+        })
+    } catch (error) {
+        res.status(500).send({
+            error: {
+                message: "Internal server error",
+                log: error.message,
+            },
+        });
+    }
+}
+
+exports.showByUser = async (req, res) => {
+    try {
+        const {
+            id
+        } = req.user
+
+        const data = await Transaction.findAll({
+            where: {
+                userId: id
+            },
+            include: [{
+                model: Trip,
+                as: "Trip",
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt', 'countryId']
+                },
+                include: {
+                    model: Country,
+                    as: "Country",
+                    attributes: {
+                        exclude: ['createdAt', 'updatedAt']
+                    }
+                }
+            }, {
+                model: User,
+                as: "user",
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt', 'password']
+                }
+            }],
+            attributes: {
+                exclude: ['updatedAt', 'password']
+            }
+        })
+
+        res.status(200).send({
+            message: "response success",
+            data
         })
     } catch (error) {
         res.status(500).send({

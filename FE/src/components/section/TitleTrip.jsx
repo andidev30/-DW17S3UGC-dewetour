@@ -1,19 +1,17 @@
-import React from 'react'
+import React from "react";
 import { Row, Col } from "reactstrap";
 
-function TitleTrip() {
-    return (
-        <div>
-          <Row>
-            <Col>
-              <h1 className="mt-2 font-weight-bold">
-                6D/4N Fun Tassie Vacation + Sydney
-              </h1>
-              <h5 className="text-muted">Australia</h5>
-            </Col>
-          </Row>
-        </div>
-    )
+function TitleTrip({ title, country }) {
+  return (
+    <div>
+      <Row>
+        <Col>
+          <h1 className="mt-2 font-weight-bold text-uppercase">{title}</h1>
+          <h5 className="text-muted text-capitalize">{country}</h5>
+        </Col>
+      </Row>
+    </div>
+  );
 }
 
-export default TitleTrip
+export default TitleTrip;

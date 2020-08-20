@@ -70,11 +70,11 @@ exports.destroy = async (req, res) => {
         })
 
         if (!data) return res.status(400).send({
-            message: `user with id ${id} is not existed`
+            message: `user is not existed`
         })
 
         res.status(200).send({
-            message: "response success",
+            message: "data has been destroyed",
             id
         })
     } catch (error) {
@@ -82,7 +82,7 @@ exports.destroy = async (req, res) => {
         res.status(500).send({
             error: {
                 message: "Internal Server Error",
-                log : error.message
+                log: error.message
             }
         })
     }

@@ -6,7 +6,7 @@ import email from "../img/profile/email.png";
 import telp from "../img/profile/telp.png";
 import lok from "../img/profile/lok.png";
 
-function InfoProfile() {
+function InfoProfile({ dataUser }) {
   return (
     <Card
       style={{
@@ -25,39 +25,39 @@ function InfoProfile() {
           </Button>
         </div>
         <div>
-          <div class="row mt-4">
+          <div className="row mt-4">
             <div className="col-2">
               <img src={pr} alt="tes" />
             </div>
             <div className="col">
-              <h6>Radif Ganteng</h6>
-              <p className="text-muted">Full name</p>
+              <h6 className="font-weight-bold text-capitalize">{dataUser.fullname}</h6>
+              <p className="text-muted">Nama</p>
             </div>
           </div>
-          <div class="row">
+          <div className="row">
             <div className="col-2">
               <img src={email} alt="tes" />
             </div>
             <div className="col">
-              <h6>RadifGanteng@mail.com</h6>
-              <p className="text-muted">email</p>
+              <h6 className="font-weight-bold text-capitalize">{dataUser.email}</h6>
+              <p className="text-muted">Email</p>
             </div>
           </div>
-          <div class="row">
+          <div className="row">
             <div className="col-2">
               <img src={telp} alt="tes" />
             </div>
             <div className="col">
-              <h6>0812222222</h6>
-              <p className="text-muted">Email</p>
+              <h6 className="font-weight-bold text-capitalize">{dataUser.phone}</h6>
+              <p className="text-muted">Phone</p>
             </div>
           </div>
-          <div class="row">
+          <div className="row">
             <div className="col-2">
               <img src={lok} alt="tes" />
             </div>
             <div className="col">
-              <h6>Perumahan Permata Bintaro Residence C-3</h6>
+              <h6 className="font-weight-bold text-capitalize">{dataUser.address}</h6>
               <p className="text-muted">Address</p>
             </div>
           </div>

@@ -74,8 +74,8 @@
     line-height: 25px;
     /* identical to box height */
 
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
 
     color: #000000;
 }

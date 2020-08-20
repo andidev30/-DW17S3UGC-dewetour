@@ -8,9 +8,9 @@ import ImgRight from "../components/img/global/right.png";
 
 function Home() {
   return (
-    <div style={{ background: "#E5E5E5", paddingBottom:"100px" }}>
-    <img src={ImgLeft} className="img-left" alt="left" />
-    <img src={ImgRight} className="img-right" alt="right" />
+    <div style={{ background: "#E5E5E5", paddingBottom: "100px" }}>
+      <img src={ImgLeft} className="img-left" alt="left" />
+      <img src={ImgRight} className="img-right" alt="right" />
       <Banner />
       <Features />
       <br />

@@ -108,7 +108,7 @@ exports.store = async (req, res) => {
       })
 
       res.status(200).send({
-        message: "response success",
+        message: "data has been store",
         data: result
       })
     }
@@ -185,7 +185,7 @@ exports.update = async (req, res) => {
       })
 
       res.status(200).send({
-        message: "response success",
+        message: "data has been updated",
         data: checkId
       })
     }
@@ -228,7 +228,7 @@ exports.destroy = async (req, res) => {
       });
 
       return res.status(200).send({
-        message: "response success",
+        message: "data has been deleted",
         id,
       });
     }
