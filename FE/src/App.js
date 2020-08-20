@@ -12,7 +12,7 @@ import Profile from './pages/Profile'
 import Transaction from './pages/Transaction'
 import Trip from './pages/Trip'
 import TripAdd from './pages/TripAdd'
-// import PayPending from './pages/PayPending'
+import PayPending from './pages/PayPending'
 import Footer from "./components/section/Footer";
 import './App.css'
 // import ImgLeft from "./components/img/global/left.png";
@@ -46,6 +46,7 @@ function App() {
         <Route path="/detail-trip/:id">
           <TripDetail />
         </Route>
+        <PrivateRoute path="/pay/:id" component={PayPending} />
         <PrivateRoute path="/pay" component={Pay} />
         <PrivateRoute path="/profile" component={Profile} />
         <Route path="/transaction">

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import ModalLogin from "../baner/ModalLogin";
 import Axios from "axios";
+import { Redirect } from "react-router-dom";
 
 function ButtonBook() {
   const [modalLogin, setModalLogin] = useState(false);
+  const [isRedirect, setRedirect] = useState(false)
   const buttonBook = () => {
     if (!localStorage.getItem("token")) {
       setModalLogin(true);
@@ -30,6 +32,7 @@ function ButtonBook() {
   };
   return (
     <div className="d-flex justify-content-end mt-4">
+      {isRedirect && <Redirect to="" />}
       <Button onClick={() => buttonBook()} className="btn-warning text-white">
         <b>Book Now</b>
       </Button>
