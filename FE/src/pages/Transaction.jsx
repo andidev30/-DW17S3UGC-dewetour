@@ -6,7 +6,7 @@ import DataTransaction from "../components/partials/transaction/DataTransaction"
 
 function Transaction() {
   return (
-    <div style={{ background: "#E5E5E5", paddingBottom:"100px" }}>
+    <div style={{ background: "#E5E5E5", paddingBottom: "100px" }}>
       <div
         style={{
           backgroundImage: `url(${Background})`,

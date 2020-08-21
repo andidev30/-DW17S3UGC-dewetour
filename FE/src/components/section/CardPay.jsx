@@ -10,7 +10,7 @@ function CardPay({ data }) {
       <Card className="p-5">
         <TitlePay data={data} />
         <DescPay data={data} />
-        <DataPay data={data}/>
+        <DataPay data={data} />
       </Card>
     </div>
   );
