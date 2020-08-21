@@ -2,10 +2,10 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function ModalPay(props) {
+function ModalPay() {
   return (
     <Modal
-      {...props}
+      show={true}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered

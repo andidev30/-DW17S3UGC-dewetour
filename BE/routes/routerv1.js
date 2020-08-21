@@ -46,6 +46,7 @@ router.put('/transaction/:id', authenticated.cekLogin, transactionController.upd
 router.get('/transaction/:id', transactionController.show)
 router.get('/orders', transactionController.shows)
 router.get('/orderByUser', authenticated.cekLogin, transactionController.showByUser)
-router.patch('/uploadStruk/:id', strukUploader.strukUpload, transactionController.uploadStruk )
+router.patch('/uploadStruk/:id', authenticated.cekLogin, strukUploader.strukUpload, transactionController.uploadStruk)
+router.patch('/updateStatus/:id', authenticated.cekLogin, transactionController.updateStatus)
 
 module.exports = router

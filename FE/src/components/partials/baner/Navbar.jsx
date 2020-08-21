@@ -7,6 +7,7 @@ import ModalRegister from "./ModalRegister";
 import P2 from "../../img/profile/p2.png";
 import ProfileDropdown from "../dropdown/ProfileDropdown";
 // import LoginContext from "../../../context/LoginContext";
+import {Link} from 'react-router-dom'
 
 function Navbar() {
   const [showModalLogin, setShowModalLogin] = useState(false);
@@ -25,7 +26,10 @@ function Navbar() {
     <Row>
       <Col>
         <nav className="navbar navbar-expand navbar-dark bg-transparant">
-          <img src={logo} alt="logo" />
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
+
           <div className="nav navbar-nav ml-auto">
             {!localStorage.getItem("token") && (
               <Col>

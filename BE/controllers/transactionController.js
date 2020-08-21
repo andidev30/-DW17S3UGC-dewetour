@@ -322,8 +322,7 @@ exports.uploadStruk = async (req, res) => {
     const image = "http://localhost:3008/" + req.file.path
 
     const result = await Transaction.update({
-      attachment: image,
-      status: "waiting approve"
+      attachment: image
     }, {
       where: {
         id
@@ -336,6 +335,41 @@ exports.uploadStruk = async (req, res) => {
           id
         },
         attributes: ['attachment']
+      })
+
+      res.status(200).send({
+        message: "data has been updated",
+        data: data
+      })
+    }
+  } catch (error) {
+    res.status(500).send({
+      error: {
+        message: "Internal server error",
+        log: error.message
+      }
+    })
+  }
+}
+
+exports.updateStatus = async (req, res) => {
+  try {
+    const {
+      id
+    } = req.params
+
+    const result = await Transaction.update(req.body, {
+      where: {
+        id
+      }
+    })
+
+    if (result) {
+      const data = await Transaction.findOne({
+        where: {
+          id
+        },
+        attributes: ['status']
       })
 
       res.status(200).send({

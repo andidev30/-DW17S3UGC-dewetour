@@ -52,18 +52,20 @@ function Pay() {
             td.status === "waiting approve" ? (
               <>
                 <CardPay data={td} />
-                <Button
-                  variant="warning text-white"
-                  className="btn-lg float-right"
-                  onClick={() => setModalShow(true)}
-                  style={{
-                    marginTop: "-70px",
-                    margintLeft: "7%",
-                    marginRight: "7%",
-                  }}
-                >
-                  Pay
-                </Button>
+                {td.status === "waiting payment" && (
+                  <Button
+                    variant="warning text-white"
+                    className="btn-lg float-right"
+                    onClick={() => setModalShow(true)}
+                    style={{
+                      marginTop: "-70px",
+                      margintLeft: "7%",
+                      marginRight: "7%",
+                    }}
+                  >
+                    Pay
+                  </Button>
+                )}
               </>
             ) : (
               <h1>no data</h1>
@@ -72,7 +74,7 @@ function Pay() {
         ))
       )}
 
-      <ModalPay show={modalShow} onHide={() => setModalShow(false)} />
+      {/* <ModalPay show={modalShow} onHide={() => setModalShow(false)} /> */}
     </div>
   );
 }

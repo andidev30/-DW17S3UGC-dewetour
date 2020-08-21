@@ -8,23 +8,30 @@ import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function ProfileDropdown() {
-
   const setLogout = () => {
     localStorage.setItem("token", "");
     localStorage.setItem("email", "");
     localStorage.setItem("role", "");
     window.location.reload(false);
-  }
+  };
   return (
     <div>
       <div className="kotak">
         {localStorage.role === "admin" ? (
-          <Link to="/trip">
-          <p>
-            <Image src={D4} className="mr-3" />
-            <span className="text-dark font-weight-bold">Trip</span>
-          </p>
-        </Link>
+          <>
+            <Link to="/transaction">
+              <p>
+                <Image src={D2} className="mr-3" />
+                <span className="text-dark font-weight-bold">Transaction</span>
+              </p>
+            </Link>
+            <Link to="/trip">
+              <p>
+                <Image src={D4} className="mr-3" />
+                <span className="text-dark font-weight-bold">Trip</span>
+              </p>
+            </Link>
+          </>
         ) : (
           <>
             <Link to="/profile">
@@ -40,7 +47,7 @@ function ProfileDropdown() {
               </p>
             </Link>
           </>
-        ) }
+        )}
         <hr />
         <Link to="">
           <p onClick={setLogout}>
