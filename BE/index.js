@@ -10,7 +10,8 @@ app.use(cors())
 
 app.use(bodyParser.json());
 
-app.use('/Images', express.static("Images"))
+// app.use('/Images', express.static("Images"))
+app.use('/uploads', express.static("uploads"))
 
 const routerv1 = require('./routes/routerv1');
 app.use('/api/v1', routerv1)

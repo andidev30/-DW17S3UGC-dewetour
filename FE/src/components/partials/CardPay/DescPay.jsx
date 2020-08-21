@@ -1,11 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 import { Image } from "react-bootstrap";
-import GStruk from "../../img/global/struk.png"
+import GStruk from "../../img/global/struk.png";
+import Axios from 'axios'
+import {useParams} from 'react-router-dom'
 
-function DescPay({data}) {
+function DescPay({ data }) {
+  const [dataImage, setDataImage] = useState([])
+  const {id} = useParams()
+
+  const changeSelecctedFile = (e) => {
+    setDataImage(e.target.files[0])
+  }
+  const uploadSelectedFile = () => {
+    const formData = new FormData()
+    formData.append('attachment', dataImage, dataImage.name)
+    Axios({
+      method: "patch",
+      url: `http://localhost:3008/api/v1/uploadStruk/${id}`,
+      data: formData
+    }).then((response) => {
+      console.log(response)
+    }).catch((error) => {
+      console.log(error.response.data.error.DescPaymessage)
+    })
+  }
+
   return (
     <div className="row mt-5">
-      <div className="col-md-5">
+      <div className="col-md-4">
         <div className="row">
           <div className="col">
             <h4 className="font-weight-bold">{data.Trip.title}</h4>
@@ -26,7 +48,9 @@ function DescPay({data}) {
           </div>
           <div className="col">
             <h6 className="font-weight-bold">Duration</h6>
-            <p className="text-muted">{data.Trip.day} Day {data.Trip.night} Night</p>
+            <p className="text-muted">
+              {data.Trip.day} Day {data.Trip.night} Night
+            </p>
           </div>
         </div>
         <div className="row">
@@ -40,10 +64,15 @@ function DescPay({data}) {
           </div>
         </div>
       </div>
-      <div className="col-md-2">
-        <Image src={GStruk} rounded />
-          <p className="text-muted text-center">upload Payment</p>
-          </div>
+      <div className="col-md-3">
+        {data.status === "waiting approve" && (<Image src={GStruk} rounded />)}
+        {data.status === 'waiting payment' && (
+          <>
+          <input type="file" onChange={changeSelecctedFile} />
+          <button onClick={uploadSelectedFile} className="btn btn-warning btn-sm text-white mt-3">Upload</button>
+          </>
+        )}
+      </div>
     </div>
   );
 }

@@ -48,7 +48,8 @@ function Pay() {
       ) : (
         data.map((td) => (
           <div key={td.id}>
-            {td.status === "waiting payment" && (
+            {td.status === "waiting payment" ||
+            td.status === "waiting approve" ? (
               <>
                 <CardPay data={td} />
                 <Button
@@ -64,6 +65,8 @@ function Pay() {
                   Pay
                 </Button>
               </>
+            ) : (
+              <h1>no data</h1>
             )}
           </div>
         ))

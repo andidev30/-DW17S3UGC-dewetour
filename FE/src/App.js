@@ -15,10 +15,9 @@ import TripAdd from './pages/TripAdd'
 import PayPending from './pages/PayPending'
 import Footer from "./components/section/Footer";
 import './App.css'
-// import ImgLeft from "./components/img/global/left.png";
-// import ImgRight from "./components/img/global/right.png";
 import LoginContext from './context/LoginContext'
 import PrivateRoute from './helpers/PrivateRoute'
+import AdminRoute from './helpers/AdminRoute'
 
 function App() {
 
@@ -30,27 +29,19 @@ function App() {
   return (
     <>
     <LoginContext.Provider value={{loginData, setLoginData}}>
-    {/* <img src={ImgLeft} className="img-left" alt="left" />
-    <img src={ImgRight} className="img-right" alt="right" /> */}
     <Router>
       <Switch>
-        {/* <Route path="/pay-pending">
-          <PayPending />
-        </Route> */}
-        <Route path="/trip/add">
-          <TripAdd />
-        </Route>
-        <Route path="/trip">
-          <Trip />
-        </Route>
-        <Route path="/detail-trip/:id">
-          <TripDetail />
-        </Route>
+        {/* private route user */}
         <PrivateRoute path="/pay/:id" component={PayPending} />
         <PrivateRoute path="/pay" component={Pay} />
         <PrivateRoute path="/profile" component={Profile} />
-        <Route path="/transaction">
-          <Transaction />
+        {/* admin route */}
+        <AdminRoute  path="/transaction" component={Transaction} />
+        <AdminRoute  path="/trip/add" component={TripAdd} />
+        <AdminRoute  path="/trip" component={Trip} />
+        {/* guest route */}
+        <Route path="/detail-trip/:id">
+          <TripDetail />
         </Route>
         <Route path="/">
           <Home />

@@ -43,7 +43,7 @@ function PayPending() {
         <h1>Loading ...</h1>
       ) : (
         <>
-          {data.status === "waiting payment" && (
+          {data.status === "waiting payment" || data.status === 'waiting approve' ? (
             <>
               <CardPay data={data} />
               <Button
@@ -59,6 +59,8 @@ function PayPending() {
                 Pay
               </Button>
             </>
+          ) : (
+            <h1>no data</h1>
           )}
         </>
       )}

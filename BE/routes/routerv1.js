@@ -4,6 +4,9 @@ const router = express.Router()
 //middleware login
 const authenticated = require('../middleware/authenticated');
 
+//
+const strukUploader = require('../helpers/strukUploader');
+
 //routes auth
 const authController = require('../controllers/authController')
 
@@ -43,5 +46,6 @@ router.put('/transaction/:id', authenticated.cekLogin, transactionController.upd
 router.get('/transaction/:id', transactionController.show)
 router.get('/orders', transactionController.shows)
 router.get('/orderByUser', authenticated.cekLogin, transactionController.showByUser)
+router.patch('/uploadStruk/:id', strukUploader.strukUpload, transactionController.uploadStruk )
 
 module.exports = router
