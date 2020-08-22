@@ -71,18 +71,17 @@ exports.show = async (req, res) => {
 exports.store = async (req, res) => {
   try {
     const schema = joi.object({
-      title: joi.string().min(2).required(),
+      title: joi.string().required(),
       countryId: joi.number().integer().required(),
-      accomodation: joi.string().min(2).required(),
-      transportation: joi.string().min(2).required(),
-      eat: joi.string().min(2).required(),
+      accomodation: joi.string().required(),
+      transportation: joi.string().required(),
+      eat: joi.string().required(),
       day: joi.number().integer().min(1).required(),
       night: joi.number().integer().min(1).required(),
       dateTrip: joi.date().required(),
       price: joi.number().integer().required(),
       quota: joi.number().integer().required(),
-      description: joi.string().min(2).required(),
-      image: joi.string().min(3).required()
+      description: joi.string().required()
     })
 
     const {
@@ -95,7 +94,36 @@ exports.store = async (req, res) => {
       }
     })
 
-    const data = await Trip.create(req.body)
+    const {
+      title,
+      countryId,
+      accomodation,
+      transportation,
+      eat,
+      day,
+      night,
+      dateTrip,
+      price,
+      quota,
+      description
+    } = req.body
+
+    const image = "http://localhost:3008/" + req.files[0].path + ", " + "http://localhost:3008/" + req.files[1].path + ", " + "http://localhost:3008/" + req.files[2].path + ", "
+
+    const data = await Trip.create({
+      title,
+      countryId,
+      accomodation,
+      transportation,
+      eat,
+      day,
+      night,
+      dateTrip,
+      price,
+      quota,
+      description,
+      image
+    })
 
     if (data) {
       const result = await Trip.findOne({

@@ -14,7 +14,7 @@ function ModalLogin() {
     password: "",
     phone: "",
     address: "",
-    role: "user"
+    role: "user",
   });
 
   const [errorForm, setErrorForm] = useState("");

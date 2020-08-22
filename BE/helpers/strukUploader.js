@@ -1,6 +1,6 @@
 //multer
 const multer = require('multer')
-const db = require('../models')
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/')

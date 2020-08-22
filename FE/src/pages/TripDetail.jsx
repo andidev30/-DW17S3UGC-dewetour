@@ -54,7 +54,7 @@ function TripDetail() {
         ) : (
           <Container className="p-5">
             <TitleTrip title={data.title} country={data.Country.name} />
-            <Galeri />
+            <Galeri data={data} />
             <BookContext.Provider value={{ qty, setQty, prices, setPrices }}>
               <InfoTrip data={data} />
               <DescTrip desc={data.description} />

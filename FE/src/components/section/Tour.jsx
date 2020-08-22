@@ -38,7 +38,7 @@ function Tour() {
             {!data ? <h1>Loading</h1> : data.map((td) => (
               <Link to={`/detail-trip/${td.id}`} key={td.id}>
                 <Card>
-                  <Card.Img variant="top" src={`http://localhost:3008/Images/${td.image}`} className="p-1" />
+                  <Card.Img variant="top" src={td.image.split(',')[0]} className="p-1" />
                   <Card.Body>
                     <Card.Title>{td.title}</Card.Title>
                     <Card.Text className="row justify-content-between px-3">

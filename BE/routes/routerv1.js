@@ -4,8 +4,9 @@ const router = express.Router()
 //middleware login
 const authenticated = require('../middleware/authenticated');
 
-//
+//helpers
 const strukUploader = require('../helpers/strukUploader');
+const tripUploader = require('../helpers/tripUploader');
 
 //routes auth
 const authController = require('../controllers/authController')
@@ -34,7 +35,7 @@ const tripController = require('../controllers/tripController')
 
 router.get('/trips', tripController.shows)
 router.get('/trip/:id', tripController.show)
-router.post('/trip', authenticated.cekLogin, tripController.store)
+router.post('/trip', authenticated.cekLogin, tripUploader.tripUploader, tripController.store)
 router.delete('/trip/:id', authenticated.cekLogin, tripController.destroy)
 router.patch('/trip/:id', authenticated.cekLogin, tripController.update)
 

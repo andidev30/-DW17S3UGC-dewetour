@@ -25,6 +25,7 @@ function DescPay({ data }) {
     })
       .then((response) => {
         setImageStruk(response.data.data.attachment);
+        // console.log(formData)
       })
       .catch((error) => {
         console.log(error.response.data.error.DescPaymessage);
@@ -71,9 +72,7 @@ function DescPay({ data }) {
         </div>
       </div>
       <div className="col-md-3">
-        {!(imageStruk === "default.jpg") && (
-          <Image src={imageStruk} rounded />
-        )}
+        {!(imageStruk === "default.jpg") && <Image src={imageStruk} rounded />}
         {data.status === "waiting payment" && (
           <>
             <input type="file" onChange={changeSelecctedFile} />

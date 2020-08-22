@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Table, Button } from "react-bootstrap";
 import ModalTransaction from "./ModalTransaction";
 import Axios from "axios";
+import ISearch from '../../img/global/search 1.png'
 
 function DataTransaction() {
   const [modalShow, setModalShow] = useState(false);
@@ -60,13 +61,13 @@ function DataTransaction() {
                   <td>{td.status}</td>
                   <td>
                     <Button
-                      variant="warning text-white"
+                      variant="transparant"
                       onClick={(e) => {
                         setClickHandler(e)
                       }}
                       id={td.id}
                     >
-                      Detail
+                      <img src={ISearch} alt="icon search"/>
                     </Button>
                   </td>
                 </tr>
