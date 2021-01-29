@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 
 function ButtonBook() {
   const [modalLogin, setModalLogin] = useState(false);
-  const [isRedirect, setRedirect] = useState(false)
+  const [isRedirect, setRedirect] = useState(false);
   const buttonBook = () => {
     if (!localStorage.getItem("token")) {
       setModalLogin(true);
@@ -14,7 +14,7 @@ function ButtonBook() {
       const token = localStorage.getItem("token");
       Axios({
         method: "post",
-        url: "http://localhost:3008/api/v1/transaction",
+        url: "http://147.139.192.126:3008/api/v1/transaction",
         headers: {
           Authorization: `Bearer ${token}`,
         },

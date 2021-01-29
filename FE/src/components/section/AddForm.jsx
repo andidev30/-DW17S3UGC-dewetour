@@ -22,7 +22,7 @@ function AddForm() {
   const getCountry = () => {
     Axios({
       method: "get",
-      url: "http://localhost:3008/api/v1/country",
+      url: "http://147.139.192.126:3008/api/v1/country",
     })
       .then((response) => {
         setDataCountry(response.data.data);
@@ -39,7 +39,7 @@ function AddForm() {
   }, []);
 
   const changeForm = (e) => {
-    setDataForm({ ...dataForm, [e.target.name]: e.target.value })
+    setDataForm({ ...dataForm, [e.target.name]: e.target.value });
   };
 
   const changeUploadImage = (e) => {
@@ -67,7 +67,7 @@ function AddForm() {
     const token = localStorage.getItem("token");
     Axios({
       method: "post",
-      url: "http://localhost:3008/api/v1/trip",
+      url: "http://147.139.192.126:3008/api/v1/trip",
       headers: {
         Authorization: `Bearer ${token}`,
       },

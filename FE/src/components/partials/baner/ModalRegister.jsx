@@ -28,7 +28,7 @@ function ModalLogin() {
 
     Axios({
       method: "post",
-      url: "http://localhost:3008/api/v1/register",
+      url: "http://147.139.192.126:3008/api/v1/register",
       data: { ...registerForm },
     })
       .then((response) => {

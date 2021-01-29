@@ -11,18 +11,20 @@ function ButtonPay() {
   const handleClickPay = () => {
     Axios({
       method: "patch",
-      url: `http://localhost:3008/api/v1/updateStatus/${id}`,
+      url: `http://147.139.192.126:3008/api/v1/updateStatus/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
       data: {
         status: "waiting approve",
       },
-    }).then((response) => {
-      setModalPay(true);
-    }).catch((error => {
-        console.log(error)
-    }))
+    })
+      .then((response) => {
+        setModalPay(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Table, Button } from "react-bootstrap";
 import ModalTransaction from "./ModalTransaction";
 import Axios from "axios";
-import ISearch from '../../img/global/search 1.png'
+import ISearch from "../../img/global/search 1.png";
 
 function DataTransaction() {
   const [modalShow, setModalShow] = useState(false);
@@ -10,14 +10,14 @@ function DataTransaction() {
   const [idModal, setIdModal] = useState();
 
   const setClickHandler = (e) => {
-    setIdModal(e.target.getAttribute('id'))
-    setModalShow(true)
-  }
+    setIdModal(e.target.getAttribute("id"));
+    setModalShow(true);
+  };
 
   const getData = () => {
     Axios({
       method: "get",
-      url: "http://localhost:3008/api/v1/orders",
+      url: "http://147.139.192.126:3008/api/v1/orders",
     })
       .then((response) => {
         setData(response.data.data);
@@ -63,11 +63,11 @@ function DataTransaction() {
                     <Button
                       variant="transparant"
                       onClick={(e) => {
-                        setClickHandler(e)
+                        setClickHandler(e);
                       }}
                       id={td.id}
                     >
-                      <img src={ISearch} alt="icon search"/>
+                      <img src={ISearch} alt="icon search" />
                     </Button>
                   </td>
                 </tr>

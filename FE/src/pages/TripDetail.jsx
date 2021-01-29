@@ -19,7 +19,7 @@ function TripDetail() {
     try {
       const result = await Axios({
         method: "GET",
-        url: `http://localhost:3008/api/v1/trip/${id}`,
+        url: `http://147.139.192.126:3008/api/v1/trip/${id}`,
       });
 
       setData(result.data.data);
@@ -29,7 +29,7 @@ function TripDetail() {
   };
 
   useEffect(() => {
-    getData()
+    getData();
   }, []);
 
   const [qty, setQty] = useState(1);

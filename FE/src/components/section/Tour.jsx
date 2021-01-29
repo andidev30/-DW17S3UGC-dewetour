@@ -16,7 +16,7 @@ function Tour() {
     try {
       const result = await Axios({
         method: "GET",
-        url: "http://localhost:3008/api/v1/trips",
+        url: "http://147.139.192.126:3008/api/v1/trips",
       });
 
       setData(result.data.data);
@@ -35,20 +35,28 @@ function Tour() {
       <Row className="mt-3">
         <Col>
           <CardColumns>
-            {!data ? <h1>Loading</h1> : data.map((td) => (
-              <Link to={`/detail-trip/${td.id}`} key={td.id}>
-                <Card>
-                  <Card.Img variant="top" src={td.image.split(',')[0]} className="p-1" />
-                  <Card.Body>
-                    <Card.Title>{td.title}</Card.Title>
-                    <Card.Text className="row justify-content-between px-3">
-                      <span className="text-warning">{td.price}</span>
-                      <span className="text-muted">{td.Country.name}</span>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Link>
-            ))}
+            {!data ? (
+              <h1>Loading</h1>
+            ) : (
+              data.map((td) => (
+                <Link to={`/detail-trip/${td.id}`} key={td.id}>
+                  <Card>
+                    <Card.Img
+                      variant="top"
+                      src={td.image.split(",")[0]}
+                      className="p-1"
+                    />
+                    <Card.Body>
+                      <Card.Title>{td.title}</Card.Title>
+                      <Card.Text className="row justify-content-between px-3">
+                        <span className="text-warning">{td.price}</span>
+                        <span className="text-muted">{td.Country.name}</span>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Link>
+              ))
+            )}
           </CardColumns>
         </Col>
       </Row>

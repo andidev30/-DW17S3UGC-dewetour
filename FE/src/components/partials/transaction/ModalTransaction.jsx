@@ -13,7 +13,7 @@ function ModalTransaction({ id }) {
   const getData = () => {
     Axios({
       method: "get",
-      url: `http://localhost:3008/api/v1/transaction/${id}`,
+      url: `http://147.139.192.126:3008/api/v1/transaction/${id}`,
     })
       .then((response) => {
         setData(response.data.data);
@@ -32,7 +32,7 @@ function ModalTransaction({ id }) {
     const token = localStorage.getItem("token");
     Axios({
       method: "patch",
-      url: `http://localhost:3008/api/v1/updateStatus/${id}`,
+      url: `http://147.139.192.126:3008/api/v1/updateStatus/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -53,7 +53,7 @@ function ModalTransaction({ id }) {
     const token = localStorage.getItem("token");
     Axios({
       method: "patch",
-      url: `http://localhost:3008/api/v1/updateStatus/${id}`,
+      url: `http://147.139.192.126:3008/api/v1/updateStatus/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -92,7 +92,10 @@ function ModalTransaction({ id }) {
           // <CardPay data={data} />
         )}
         <div className="float-right mt-4">
-          <Button variant="warning text-white" onClick={() => handleCancel()}>Cancel</Button> &nbsp;
+          <Button variant="warning text-white" onClick={() => handleCancel()}>
+            Cancel
+          </Button>{" "}
+          &nbsp;
           <Button variant="success text-white" onClick={() => handleApprove()}>
             Approve
           </Button>

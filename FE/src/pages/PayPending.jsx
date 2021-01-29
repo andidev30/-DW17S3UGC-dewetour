@@ -5,17 +5,17 @@ import Background from "../components/img/global/bg.png";
 import CardPay from "../components/section/CardPay";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
-import ButtonPay from "../components/partials/CardPay/ButtonPay"
+import ButtonPay from "../components/partials/CardPay/ButtonPay";
 
 function PayPending() {
   const { id } = useParams();
-  const [data, setData] = useState()
+  const [data, setData] = useState();
 
   const getData = async () => {
     try {
       const result = await Axios({
         method: "GET",
-        url: `http://localhost:3008/api/v1/transaction/${id}`
+        url: `http://147.139.192.126:3008/api/v1/transaction/${id}`,
       });
 
       setData(result.data.data);

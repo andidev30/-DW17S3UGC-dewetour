@@ -33,7 +33,7 @@ function Price({ price }) {
       const token = localStorage.getItem("token");
       Axios({
         method: "post",
-        url: "http://localhost:3008/api/v1/transaction",
+        url: "http://147.139.192.126:3008/api/v1/transaction",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -56,7 +56,7 @@ function Price({ price }) {
   };
   return (
     <>
-      { isRedirect ? (
+      {isRedirect ? (
         <Redirect to={`/pay/${data.id}`} />
       ) : (
         <div className="mx-2 mt-4">

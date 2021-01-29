@@ -16,7 +16,7 @@ function Pay() {
       const token = localStorage.getItem("token");
       const result = await Axios({
         method: "GET",
-        url: `http://localhost:3008/api/v1/orderByUser`,
+        url: `http://147.139.192.126:3008/api/v1/orderByUser`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
