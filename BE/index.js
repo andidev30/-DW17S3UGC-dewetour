@@ -8,6 +8,7 @@ const port = 3008;
 
 var allowedOrigins = [
   "https://dewetour.andidev.xyz",
+  "https://dewetour.andidev.xyz/",
   "https://www.dewetour.andidev.xyz"
 ];
 
