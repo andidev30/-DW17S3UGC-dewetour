@@ -6,7 +6,8 @@ const cors = require('cors');
 const app = express();
 const port = 3008;
 
-app.use(cors())
+app.use(cors());
+app.options('*', cors()); 
 
 app.use(bodyParser.json());
 
