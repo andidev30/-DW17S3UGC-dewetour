@@ -26,6 +26,7 @@ function App() {
     token: "",
     role: "user"
   })
+
   return (
     <>
     <LoginContext.Provider value={{loginData, setLoginData}}>

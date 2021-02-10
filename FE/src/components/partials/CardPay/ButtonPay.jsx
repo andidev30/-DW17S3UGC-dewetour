@@ -11,7 +11,7 @@ function ButtonPay() {
   const handleClickPay = () => {
     Axios({
       method: "patch",
-      url: `http://147.139.192.126:3008/api/v1/updateStatus/${id}`,
+      url: `${process.env.REACT_APP_SERVER_URL}/api/v1/updateStatus/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

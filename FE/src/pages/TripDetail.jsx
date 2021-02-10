@@ -19,7 +19,7 @@ function TripDetail() {
     try {
       const result = await Axios({
         method: "GET",
-        url: `http://147.139.192.126:3008/api/v1/trip/${id}`,
+        url: `${process.env.REACT_APP_SERVER_URL}/api/v1/trip/${id}`,
       });
 
       setData(result.data.data);

@@ -17,7 +17,7 @@ function DataTransaction() {
   const getData = () => {
     Axios({
       method: "get",
-      url: "http://147.139.192.126:3008/api/v1/orders",
+      url: `${process.env.REACT_APP_SERVER_URL}/api/v1/orders`,
     })
       .then((response) => {
         setData(response.data.data);

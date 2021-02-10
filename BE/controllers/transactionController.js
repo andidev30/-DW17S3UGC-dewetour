@@ -1,9 +1,4 @@
-const {
-  Transaction,
-  Trip,
-  Country,
-  User
-} = require("../models");
+const { Transaction, Trip, Country, User } = require("../models");
 const joi = require("@hapi/joi");
 
 exports.store = async (req, res) => {
@@ -16,9 +11,7 @@ exports.store = async (req, res) => {
       tripid: joi.number().integer().required(),
     });
 
-    const {
-      error
-    } = schema.validate(req.body);
+    const { error } = schema.validate(req.body);
 
     if (error)
       return res.status(400).send({
@@ -28,13 +21,7 @@ exports.store = async (req, res) => {
       });
 
     const id = req.user.id;
-    const {
-      counterQty,
-      total,
-      status,
-      attachment,
-      tripid
-    } = req.body;
+    const { counterQty, total, status, attachment, tripid } = req.body;
 
     const data = await Transaction.create({
       counterQty,
@@ -94,9 +81,7 @@ exports.update = async (req, res) => {
       tripid: joi.number().integer().required(),
     });
 
-    const {
-      error
-    } = schema.validate(req.body);
+    const { error } = schema.validate(req.body);
 
     if (error)
       return res.status(400).send({
@@ -105,9 +90,7 @@ exports.update = async (req, res) => {
         },
       });
 
-    const {
-      id
-    } = req.params;
+    const { id } = req.params;
 
     const data = await Transaction.update(req.body, {
       where: {
@@ -163,9 +146,7 @@ exports.update = async (req, res) => {
 
 exports.show = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params;
+    const { id } = req.params;
 
     const result = await Transaction.findOne({
       where: {
@@ -174,7 +155,8 @@ exports.show = async (req, res) => {
       attributes: {
         exclude: ["createdAt", "updatedAt", "tripid", "userId"],
       },
-      include: [{
+      include: [
+        {
           model: Trip,
           as: "Trip",
           attributes: {
@@ -225,7 +207,8 @@ exports.shows = async (req, res) => {
       attributes: {
         exclude: ["createdAt", "updatedAt", "tripid", "userId"],
       },
-      include: [{
+      include: [
+        {
           model: Trip,
           as: "Trip",
           attributes: {
@@ -265,15 +248,14 @@ exports.shows = async (req, res) => {
 
 exports.showByUser = async (req, res) => {
   try {
-    const {
-      id
-    } = req.user;
+    const { id } = req.user;
 
     const data = await Transaction.findAll({
       where: {
         userId: id,
       },
-      include: [{
+      include: [
+        {
           model: Trip,
           as: "Trip",
           attributes: {
@@ -316,73 +298,72 @@ exports.showByUser = async (req, res) => {
 
 exports.uploadStruk = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params
-    const image = "http://localhost:3008/" + req.file.path
+    const { id } = req.params;
+    const image = process.env.BE_DOMAIN + req.file.path;
 
-    const result = await Transaction.update({
-      attachment: image
-    }, {
-      where: {
-        id
+    const result = await Transaction.update(
+      {
+        attachment: image,
+      },
+      {
+        where: {
+          id,
+        },
       }
-    })
+    );
 
     if (result) {
       const data = await Transaction.findOne({
         where: {
-          id
+          id,
         },
-        attributes: ['attachment']
-      })
+        attributes: ["attachment"],
+      });
 
       res.status(200).send({
         message: "data has been updated",
-        data: data
-      })
+        data: data,
+      });
     }
   } catch (error) {
     res.status(500).send({
       error: {
         message: "Internal server error",
-        log: error.message
-      }
-    })
+        log: error.message,
+      },
+    });
   }
-}
+};
 
 exports.updateStatus = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params
+    const { id } = req.params;
 
     const result = await Transaction.update(req.body, {
       where: {
-        id
-      }
-    })
+        id,
+      },
+    });
 
     if (result) {
       const data = await Transaction.findOne({
         where: {
-          id
+          id,
         },
-        attributes: ['status']
-      })
+        attributes: ["status"],
+      });
 
       res.status(200).send({
         message: "data has been updated",
-        data: data
-      })
+        data: data,
+      });
     }
   } catch (error) {
     res.status(500).send({
       error: {
         message: "Internal server error",
-        log: error.message
-      }
-    })
+        log: error.message,
+      },
+    });
   }
-}
+};

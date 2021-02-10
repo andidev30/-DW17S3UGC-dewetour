@@ -13,7 +13,7 @@ function ModalTransaction({ id }) {
   const getData = () => {
     Axios({
       method: "get",
-      url: `http://147.139.192.126:3008/api/v1/transaction/${id}`,
+      url: `${process.env.REACT_APP_SERVER_URL}/api/v1/transaction/${id}`,
     })
       .then((response) => {
         setData(response.data.data);
@@ -32,7 +32,7 @@ function ModalTransaction({ id }) {
     const token = localStorage.getItem("token");
     Axios({
       method: "patch",
-      url: `http://147.139.192.126:3008/api/v1/updateStatus/${id}`,
+      url: `${process.env.REACT_APP_SERVER_URL}/api/v1/updateStatus/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -53,7 +53,7 @@ function ModalTransaction({ id }) {
     const token = localStorage.getItem("token");
     Axios({
       method: "patch",
-      url: `http://147.139.192.126:3008/api/v1/updateStatus/${id}`,
+      url: `${process.env.REACT_APP_SERVER_URL}/api/v1/updateStatus/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

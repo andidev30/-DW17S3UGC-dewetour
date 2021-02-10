@@ -1,8 +1,5 @@
-const {
-  Trip,
-  Country
-} = require("../models")
-const joi = require("@hapi/joi")
+const { Trip, Country } = require("../models");
+const joi = require("@hapi/joi");
 
 exports.shows = async (req, res) => {
   try {
@@ -35,9 +32,7 @@ exports.shows = async (req, res) => {
 
 exports.show = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params;
+    const { id } = req.params;
     const data = await Trip.findOne({
       include: {
         model: Country,
@@ -81,18 +76,17 @@ exports.store = async (req, res) => {
       dateTrip: joi.date().required(),
       price: joi.number().integer().required(),
       quota: joi.number().integer().required(),
-      description: joi.string().required()
-    })
+      description: joi.string().required(),
+    });
 
-    const {
-      error
-    } = schema.validate(req.body)
+    const { error } = schema.validate(req.body);
 
-    if (error) return res.status(400).send({
-      error: {
-        message: error.details[0].message
-      }
-    })
+    if (error)
+      return res.status(400).send({
+        error: {
+          message: error.details[0].message,
+        },
+      });
 
     const {
       title,
@@ -105,10 +99,19 @@ exports.store = async (req, res) => {
       dateTrip,
       price,
       quota,
-      description
-    } = req.body
+      description,
+    } = req.body;
 
-    const image = "http://localhost:3008/" + req.files[0].path + ", " + "http://localhost:3008/" + req.files[1].path + ", " + "http://localhost:3008/" + req.files[2].path + ", "
+    const image =
+      process.env.BE_DOMAIN +
+      req.files[0].path +
+      ", " +
+      process.env.BE_DOMAIN +
+      req.files[1].path +
+      ", " +
+      process.env.BE_DOMAIN +
+      req.files[2].path +
+      ", ";
 
     const data = await Trip.create({
       title,
@@ -122,23 +125,23 @@ exports.store = async (req, res) => {
       price,
       quota,
       description,
-      image
-    })
+      image,
+    });
 
     if (data) {
       const result = await Trip.findOne({
         where: {
-          id: data.id
+          id: data.id,
         },
         attributes: {
-          exclude: ['createdAt', 'updatedAt']
-        }
-      })
+          exclude: ["createdAt", "updatedAt"],
+        },
+      });
 
       res.status(200).send({
         message: "data has been store",
-        data: result
-      })
+        data: result,
+      });
     }
   } catch (error) {
     res.status(500).send({
@@ -148,7 +151,7 @@ exports.store = async (req, res) => {
       },
     });
   }
-}
+};
 
 exports.update = async (req, res) => {
   try {
@@ -164,32 +167,27 @@ exports.update = async (req, res) => {
       price: joi.number().integer().required(),
       quota: joi.number().integer().required(),
       description: joi.string().min(2).required(),
-      image: joi.string().min(3).required()
-    })
+      image: joi.string().min(3).required(),
+    });
 
-    const {
-      error
-    } = schema.validate(req.body)
+    const { error } = schema.validate(req.body);
 
-    if (error) return res.status(400).send({
-      error: {
-        message: error.details[0].message
-      }
-    })
+    if (error)
+      return res.status(400).send({
+        error: {
+          message: error.details[0].message,
+        },
+      });
 
-    const {
-      id
-    } = req.params
+    const { id } = req.params;
 
-    const data = await Trip.update(
-      req.body, {
-        where: {
-          id
-        }
-      })
+    const data = await Trip.update(req.body, {
+      where: {
+        id,
+      },
+    });
 
     if (data) {
-
       const checkId = await Trip.findOne({
         include: {
           model: Country,
@@ -204,18 +202,19 @@ exports.update = async (req, res) => {
         where: {
           id,
         },
-      })
+      });
 
-      if (!checkId) return res.status(400).send({
-        error: {
-          message: "can't update. id is incorect"
-        }
-      })
+      if (!checkId)
+        return res.status(400).send({
+          error: {
+            message: "can't update. id is incorect",
+          },
+        });
 
       res.status(200).send({
         message: "data has been updated",
-        data: checkId
-      })
+        data: checkId,
+      });
     }
   } catch (error) {
     res.status(500).send({
@@ -225,13 +224,11 @@ exports.update = async (req, res) => {
       },
     });
   }
-}
+};
 
 exports.destroy = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params;
+    const { id } = req.params;
 
     const checkId = await Trip.findOne({
       where: {

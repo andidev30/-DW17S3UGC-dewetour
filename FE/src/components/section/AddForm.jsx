@@ -22,7 +22,7 @@ function AddForm() {
   const getCountry = () => {
     Axios({
       method: "get",
-      url: "http://147.139.192.126:3008/api/v1/country",
+      url: `${process.env.REACT_APP_SERVER_URL}/api/v1/country`,
     })
       .then((response) => {
         setDataCountry(response.data.data);
@@ -67,7 +67,7 @@ function AddForm() {
     const token = localStorage.getItem("token");
     Axios({
       method: "post",
-      url: "http://147.139.192.126:3008/api/v1/trip",
+      url: `${process.env.REACT_APP_SERVER_URL}/api/v1/trip`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

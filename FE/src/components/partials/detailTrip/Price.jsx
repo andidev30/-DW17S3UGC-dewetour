@@ -33,7 +33,7 @@ function Price({ price }) {
       const token = localStorage.getItem("token");
       Axios({
         method: "post",
-        url: "http://147.139.192.126:3008/api/v1/transaction",
+        url: `${process.env.REACT_APP_SERVER_URL}/api/v1/transaction`,
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -28,7 +28,7 @@ function ModalLogin() {
 
     Axios({
       method: "post",
-      url: "http://147.139.192.126:3008/api/v1/register",
+      url: `${process.env.REACT_APP_SERVER_URL}/api/v1/register`,
       data: { ...registerForm },
     })
       .then((response) => {
@@ -40,7 +40,7 @@ function ModalLogin() {
         setShow(false);
       })
       .catch((error) => {
-        setErrorForm(error.response.data.error.message);
+        setErrorForm(error?.response?.data?.error?.message);
       });
   };
   return (
